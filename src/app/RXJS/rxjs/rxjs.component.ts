@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { of,map } from 'rxjs';
+import { of,map ,mergeMap } from 'rxjs';
 import { ApiserviceService } from '../../Service/apiservice.service';
 @Component({
   selector: 'app-rxjs',
@@ -20,6 +20,10 @@ value$.pipe((map(x=>of(x)))).subscribe((data:any)=>{
   data.subscribe((data:any)=>{
     console.log(data);
   })
+})
+// mergeMap
+value$.pipe(mergeMap(x=>of(x))).subscribe((data:any)=>{
+console.log(data);
 })
 
     this.api.getdata().subscribe((data:any)=>{
