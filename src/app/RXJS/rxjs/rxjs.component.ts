@@ -13,6 +13,15 @@ import { ApiserviceService } from '../../Service/apiservice.service';
 export class RxjsComponent implements OnInit{
   constructor(private api :ApiserviceService) { }
  ngOnInit(): void {
+// higher order observables
+let value$=of(1,2,3,4,5,6,7,8,9,10);
+
+value$.pipe((map(x=>of(x)))).subscribe((data:any)=>{
+  data.subscribe((data:any)=>{
+    console.log(data);
+  })
+})
+
     this.api.getdata().subscribe((data:any)=>{
       console.log(data);
     })
